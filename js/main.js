@@ -52,6 +52,17 @@ function formatSrtSubtitleString(subtitle){
   return subtitleString;
 }
 
+function formatSubtitleDOM(subtitle) {
+  var newSub = $("#sub-base").clone().removeClass("hidden").removeAttr("id");
+  newSub.find(".sub-start input").val(formatSrtTime(subtitle.startTime));
+  newSub.find(".sub-end  input").val(formatSrtTime(subtitle.endTime));
+  newSub.find(".sub-duration input").val(formatSrtTime(subtitle.endTime - subtitle.startTime));
+  newSub.find(".sub-text input").val(subtitle.text);
+  
+  return newSub;
+   
+}
+
 var subtitles = []
 var currentSubStartTime = "";
 var currentSubEndTime = "";
@@ -98,6 +109,11 @@ $( "#save-button" ).click(function() {
   // append subtitle to subs-result
   subtitleString = formatSrtSubtitleString(sub);
   $( "#sub-result" ).val($( "#sub-result" ).val() + subtitleString);
+
+  // append subtitle to subs-list
+  subtitleDOM = formatSubtitleDOM(sub);
+  console.log(subtitleDOM);
+  $( "#sub-list" ).append(subtitleDOM);
 
   console.log(subtitleString);
 
