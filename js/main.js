@@ -60,7 +60,7 @@ function formatSubtitleDOM(subtitle) {
   newSub.find(".sub-text input").val(subtitle.text);
   
   return newSub;
-   
+
 }
 
 var subtitles = []
@@ -86,7 +86,7 @@ $( "#end-button" ).click(function() {
   player.pauseVideo();
 
   // show sub-entry-form
-  $( "#sub-entry-form" ).show();
+  $( "#save-button" ).show();
 
   // alert( "Handler for end-button .click() called." );
 });
@@ -108,7 +108,7 @@ $( "#save-button" ).click(function() {
 
   // append subtitle to subs-result
   subtitleString = formatSrtSubtitleString(sub);
-  $( "#sub-result" ).val($( "#sub-result" ).val() + subtitleString);
+  $( "#sub-result textarea" ).val($( "#sub-result textarea" ).val() + subtitleString);
 
   // append subtitle to subs-list
   subtitleDOM = formatSubtitleDOM(sub);
@@ -121,7 +121,22 @@ $( "#save-button" ).click(function() {
   $( "#sub-text" ).val("");
 
   // hide sub-entry-form
-  $( "#sub-entry-form" ).hide();
+  $( "#save-button" ).hide();
 
   // alert( "Handler for save-button .click() called." );
+});
+
+$(".tabpanel .nav-tabs li a").each(function(){
+  if(!$(this).parent().hasClass("pure-menu-selected")) {
+    $($(this).attr("href")).hide();
+  }
+
+});
+
+$(".tabpanel .nav-tabs li a").click(function(e) {
+  e.preventDefault();
+  $(".tabpanel .nav-pane").hide();
+  $($(this).attr("href")).show();
+  $(".tabpanel .nav-tabs li").removeClass("pure-menu-selected");
+  $(this).parent().addClass("pure-menu-selected")
 });
