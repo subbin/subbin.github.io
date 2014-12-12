@@ -6,8 +6,7 @@ function formatSeconds(seconds) {
 }
 
 function formatSrtTime(seconds) {
-  var msecs = (seconds % 1).toString().split('.')[1];
-  msecs = msecs.substring(0, 3);
+  var msecs = (seconds % 1).toFixed(3).toString().split('.')[1] || 0;
   var formatedTime = formatSeconds(seconds);
   var srtTime = formatedTime + "," + msecs;
   return srtTime;
