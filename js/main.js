@@ -52,7 +52,7 @@ function formatSrtSubtitleString(subtitle){
 }
 
 function formatSubtitleDOM(subtitle) {
-  var newSub = $("#sub-base").clone().removeClass("hidden").removeAttr("id");
+  var newSub = $("#sub-base").clone().removeClass("hidden").addClass("sub-item").removeAttr("id");
   newSub.find(".sub-start input").val(formatSrtTime(subtitle.startTime));
   newSub.find(".sub-end  input").val(formatSrtTime(subtitle.endTime));
   newSub.find(".sub-duration input").val(formatSrtTime(subtitle.endTime - subtitle.startTime));
@@ -60,6 +60,25 @@ function formatSubtitleDOM(subtitle) {
 
   return newSub;
 
+}
+
+function updateResultFromSubtitleList() {
+  $( "#sub-result textarea" ).val("");
+  var id = 0;
+  $(".sub-item").each(function(){
+    var subtitleString = "";
+    subtitleString += ++id;
+    subtitleString += "\n";
+    subtitleString += $(this).find(".sub-start input").val();
+    subtitleString += " --> ";
+    subtitleString += $(this).find(".sub-end input").val();
+    subtitleString += "\n";
+    subtitleString += $(this).find(".sub-text input").val();
+    subtitleString += "\n";
+    subtitleString += "\n";
+
+    $( "#sub-result textarea" ).val($( "#sub-result textarea" ).val() + subtitleString);
+  });
 }
 
 var subtitles = []
@@ -152,4 +171,8 @@ $("#sub-download").click(function(){
 
   // Remove anchor from body
   document.body.removeChild(fileLink)
+});
+
+$("#sub-list").delegate("input","change", function(){
+  updateResultFromSubtitleList();
 });
