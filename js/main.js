@@ -58,7 +58,7 @@ function formatSubtitleDOM(subtitle) {
   newSub.find(".sub-end  input").val(formatSrtTime(subtitle.endTime));
   newSub.find(".sub-duration input").val(formatSrtTime(subtitle.endTime - subtitle.startTime));
   newSub.find(".sub-text input").val(subtitle.text);
-  
+
   return newSub;
 
 }
@@ -139,4 +139,18 @@ $(".tabpanel .nav-tabs li a").click(function(e) {
   $($(this).attr("href")).show();
   $(".tabpanel .nav-tabs li").removeClass("pure-menu-selected");
   $(this).parent().addClass("pure-menu-selected")
+});
+
+$("#sub-download").click(function(){
+  var fileLink = window.document.createElement('a');
+  var content = $( "#sub-result textarea" ).val();
+  fileLink.href = window.URL.createObjectURL(new Blob([content], {type: 'text/plain'}));
+  fileLink.download = 'subtitle.srt';
+
+  // Append anchor to body.
+  document.body.appendChild(fileLink)
+  fileLink.click();
+
+  // Remove anchor from body
+  document.body.removeChild(fileLink)
 });
