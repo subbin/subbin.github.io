@@ -17,11 +17,7 @@
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
     <script src="js/vendor/modernizr-2.6.2.min.js"></script>
 
-    <style>
-      #sub-entry-form {
-          display: none;
-      }
-    </style>
+
   </head>
   <body>
     <!--[if lt IE 7]>
@@ -30,30 +26,65 @@
 
     <!-- Add your site or application content here -->
     <div class="pure-g">
-      <div class="pure-u-1-2">
-        <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
-        <div id="player"></div>
-      </div>
-      <div class="pure-u-1-3">
-        <div class="pure-u-1">
-          <div id="time"></div>
-          <textarea id="sub-result" readonly></textarea>
-        </div>
 
-        <div class="pure-u-1"">
-          <a id="start-button" class="pure-button" href="#">Start</a>
-          <a id="end-button" class="pure-button" href="#">End</a>
-        </div>
+      <div class="pure-u-1-2 container">
 
-        <div id="sub-entry-form" class="pure-u-1">
-          <textarea id="sub-text"></textarea>
+        <div id="sub-entry-form" >
+          <textarea id="sub-text" placeholder="Enter subtitle"></textarea>
           <div>
-            <button id="save-button" class="pure-button" type="submit">
-              Save subtitle
-            </button>
+            <button id="start-button" class="pure-button">[ Start</button>
+            <button id="end-button" class="pure-button">End ]</button>
+            <button id="save-button" class="button-success pure-button" type="submit">Save</button>
           </div>
         </div>
+
+        <hr>
+
+        <div class="tabpanel">
+
+          <!-- Nav tabs -->
+          <div class="nav-tabs pure-menu pure-menu-open pure-menu-horizontal">
+            <ul>
+              <li class="pure-menu-selected"><a href="#sub-list">Subtitles</a></li>
+              <li><a href="#sub-result">Result</a></li>
+            </ul>
+          </div>
+
+          <!-- Nav panes -->
+          <table id="sub-list" class="nav-pane pure-table pure-table-striped">
+            <caption class="hidden">Subtitles</caption>
+            <tr>
+              <th>Start</th>
+              <th>End</th>
+              <th>Duration</th>
+              <th>Text</th>
+            </tr>
+
+            <tr id="sub-base" class="hidden">
+              <td class="sub-start"><input type="text"></td>
+              <td class="sub-end"><input type="text"></td>
+              <td class="sub-duration"><input type="text"></td>
+              <td class="sub-text"><input type="text"></td>
+            </tr>
+
+          </table>
+
+          <div id="sub-result" class="nav-pane">
+            <div id="time"></div>
+            <textarea readonly></textarea>
+          </div>
+        </div>
+
       </div>
+
+      <div class="pure-u-1-2 container">
+        <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+        <div id="player"></div>
+        <button id="sub-download" class="button-success pure-button" type="submit">Download subtitle</button>
+
+
+      </div>
+
     </div>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>

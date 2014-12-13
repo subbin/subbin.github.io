@@ -97,10 +97,53 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  padding: 10px;
+}
+
+#sub-list {
+  width: 100%;
+  text-align: left;
+}
 
 
 
+#sub-list td input {
+  width: 100%;
+  border: none;
+  background: none;
+  font-size: .7em;
+}
 
+.sub-text {
+  width: 40%;
+}
+
+
+textarea#sub-text {
+  width: 100%;
+  padding: 10px;
+  min-height: 50px;
+  margin-bottom: 10px;
+}
+
+#sub-result textarea {
+  width: 100%;
+  min-height: 200px;
+}
+
+.pure-button.button-success {
+  background: rgb(28, 184, 65); /* this is a green */
+  color: white;
+}
+
+#save-button {
+  display: none;
+}
 
 
 
