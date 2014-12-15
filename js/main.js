@@ -176,3 +176,38 @@ $("#sub-download").click(function(){
 $("#sub-list").delegate("input","change", function(){
   updateResultFromSubtitleList();
 });
+
+function stringToTime(stringTime) {
+  h = stringTime.split(":")[0];
+  min = stringTime.split(":")[1];
+  s = stringTime.split(":")[2].split(",")[0];
+  ms = stringTime.split(":")[2].split(",")[1];
+  return new Date(0,0,0,h,min,s,ms);
+}
+
+function secondsToTime(seconds) {
+  return new Date(0,0,0,0,0,0,seconds * 1000);
+}
+
+function addToSubtitlesContainer(text) {
+  var element = $("<div><span class='player-sub'>"+ text +"</span></div>");
+  $("#player-sub-container").append(element);
+}
+
+function clearSubtitlesContainer() {
+  $("#player-sub-container").html("");
+}
+
+
+function updateSubtitlesContainer() {
+  var playerCurrentTime = secondsToTime(player.getCurrentTime());
+  clearSubtitlesContainer();
+  $("#sub-list").find(".sub-item").each(function(){
+    var subStartTime = stringToTime($(this).find(".sub-start input").val());
+    var subEndTime = stringToTime($(this).find(".sub-end input").val());
+    if(subStartTime <= playerCurrentTime && subEndTime >= playerCurrentTime) {
+      var subText = $(this).find(".sub-text input").val();
+      addToSubtitlesContainer(subText);
+    }
+  });
+}

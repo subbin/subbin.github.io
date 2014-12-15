@@ -145,8 +145,24 @@ textarea#sub-text {
   display: none;
 }
 
+#player-sub-container {
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  bottom: 49px;
+}
+.player-sub {
+  background: rgb(0,0,0);
+  color: white;
+  padding: 5px;
+  font-size: .9em;
+  opacity: .8;
+}
 
-
+#player-container {
+  position: relative;
+  width: 100%;
+}
 
 
 
