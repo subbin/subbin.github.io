@@ -28,4 +28,5 @@ function setSrtDuration() {
 // 4. The API will call this function when the video player is ready.
 function onPlayerReady(event) {
   // stuff to do when player is ready
+  var time = setInterval(updateSubtitlesContainer, 100);
 }
